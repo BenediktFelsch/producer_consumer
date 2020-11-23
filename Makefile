@@ -1,17 +1,11 @@
 
-BIN = producer_consumer
+# this is picked up by nmake on windows
 
-CFLAGS = -Wall -Wextra -g -pthread
+all: producer_consumer.exe
 
-SRC = src/main.c \
-      src/queue.c \
-      src/producer.c \
-      src/consumer.c
-
-all: $(BIN)
+producer_consumer.exe: producer.obj consumer.obj queue.obj main.obj
+	link $(LFLAGS) $** /out:producer_consumer.exe
 
 clean:
-	$(RM) $(BIN)
-
-$(BIN): $(SRC)
-	$(CC) -o $@ $(CFLAGS) $^
+	-del *.obj
+	-del producer_consumer.exe

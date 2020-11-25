@@ -11,9 +11,22 @@ Aufgabenstellung:
 -----------------
 
  Der gegebene Programmrahmen enthält eine Produzenten / Konsumenten Logik in
- zwei Threads, mit einer geteilten Queue zur Kommunikation der produzierten bzw.
+ zwei Threads (die bereits für Sie erstellt werden), mit einer geteilten Queue
+ zur Kommunikation der produzierten bzw.
  konsumierten Elemente.
 
- Identifizieren Sie die Kritische Sekition im Programm, und schützen Sie den
+ Identifizieren Sie den/die Kritische(n) Abschnitt(e) im Programm, und schützen Sie den
  Programmablauf vor Verfälschung der geteilten Daten durch die Verwendung von
  Semaphoren.
+
+Kompilieren des Programms:
+--------------------------
+
+ Unter Linux bzw. macOS können Sie das Programm durch die Eingabe des Befehls `make`
+ im Terminal-Emulator ihrer Wahl kompilieren, während das Projektverzeichnis das aktuelle
+ Arbeitsverzeichnis ist. Stellen Sie dazu sicher, dass ein entsprechender Compiler
+ (beispielsweise `gcc` oder `clang`) installiert ist.
+
+ Für Windows installieren Sie bitte Visual Studio oder - falls Sie nicht die ganze IDE installieren
+ wollen - die Build-Tools für Visual Studio (https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019).
+ Mithilfe des "x64 Native Tools Command Prompts" können Sie das Programm durch das Aufrufen von `nmake` kompilieren.

@@ -43,6 +43,8 @@ void*
 consume (void *arg)
 #endif
 {
+  (void)arg;
+
   while (1)
     consume_element();
 

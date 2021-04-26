@@ -4,6 +4,7 @@
 #include "main.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #ifdef _WIN32
 #  include <windows.h>
@@ -15,9 +16,9 @@
 void
 wait_random_time (void)
 {
-	volatile int i;
+	volatile size_t i;
 	size_t max_i = (2 << 13) + rand() % (2 << 13);
-	
+
 	for (i = 0; i < max_i; ++i);
 }
 
@@ -38,7 +39,7 @@ monitor (void)
       double throughput;
       size_t filled;
       int i;
-	  
+
       int r = head_r;
       processed = queue[r].id - last;
       last = queue[r].id;

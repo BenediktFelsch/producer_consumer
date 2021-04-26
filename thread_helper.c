@@ -24,6 +24,6 @@ thread_helper_join(thread_helper_t thread)
   return res == WAIT_OBJECT_0 ? 0 : res;
 #else
   // POSIX Implementation based on pthread_join
-  return pthread_join(thread);
+  return pthread_join(thread, NULL);
 #endif
 }

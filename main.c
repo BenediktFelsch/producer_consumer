@@ -2,6 +2,7 @@
 #include "producer.h"
 #include "consumer.h"
 #include "queue.h"
+#include "util.h"
 #include "thread_helper.h"
 
 #include <stdlib.h>

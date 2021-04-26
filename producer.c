@@ -13,6 +13,7 @@ produce_element (void)
   static size_t n = 0;
 
   // produce an element
+  // TODO: protect this from concurrent access
   struct element e = { n };
   n++;
 

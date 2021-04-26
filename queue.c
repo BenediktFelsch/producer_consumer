@@ -21,6 +21,8 @@ queue_init (void)
 void
 enqueue (struct element e)
 {
+  // TODO: protect this function from concurrent access using semaphores
+
   while (queue_avail == 0);
 
   queue[head_w] = e;
@@ -33,9 +35,13 @@ enqueue (struct element e)
 struct element
 dequeue (void)
 {
+  struct element e;
+
+  // TODO: protect this function from concurrent access using semaphores
+
   while (queue_used == 0);
 
-  struct element e = queue[head_r];
+  e = queue[head_r];
   head_r = (head_r + 1) % QUEUE_CAPACITY;
   queue_avail++;
 
@@ -43,4 +49,3 @@ dequeue (void)
 
   return e;
 }
-

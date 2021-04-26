@@ -17,6 +17,7 @@ consume_element (void)
   struct element e = dequeue();
 
   // make sure we are consistent
+  // TODO: protect this from concurrent access
   if (e.id != n)
     {
       fprintf(stderr, "CORRUPTION DETECTED! expected id %zu, got id %zu\n", n, e.id);

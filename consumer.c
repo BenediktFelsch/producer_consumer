@@ -31,6 +31,8 @@ consume_element (void)
 thread_helper_return_t
 consume (void *arg)
 {
+  (void)arg;
+
   while (1)
     consume_element();
 

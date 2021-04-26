@@ -27,6 +27,8 @@ produce_element (void)
 thread_helper_return_t
 produce (void *arg)
 {
+  (void)arg;
+
   while (1)
     produce_element();
 

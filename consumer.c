@@ -3,20 +3,17 @@
 
 #include "main.h"
 #include "queue.h"
+#include "util.h"
 
 #include <stdlib.h>
 #include <stdio.h>
-
-#ifndef _WIN32
-#  include <unistd.h>
-#endif
 
 static void
 consume_element (void)
 {
   static size_t n = 0;
 
-  // retreive an element from the queue
+  // retrieve an element from the queue
   struct element e = dequeue();
 
   // make sure we are consistent
@@ -27,21 +24,12 @@ consume_element (void)
     }
   n++;
 
-  // operate on the element
-#ifdef _WIN32
-  Sleep((USLEEP_START + rand() % USLEEP_RANGE) / 1000);
-#else
-  usleep(USLEEP_START + rand() % USLEEP_RANGE);
-#endif
+  // pretend to operate on the element
+  wait_random_time();
 }
 
-#ifdef _WIN32
-DWORD WINAPI
-consume (LPVOID arg)
-#else
-void*
+thread_helper_return_t
 consume (void *arg)
-#endif
 {
   while (1)
     consume_element();

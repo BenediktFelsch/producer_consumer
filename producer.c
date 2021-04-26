@@ -3,12 +3,9 @@
 
 #include "main.h"
 #include "queue.h"
+#include "util.h"
 
 #include <stdlib.h>
-
-#ifndef _WIN32
-#  include <unistd.h>
-#endif
 
 static void
 produce_element (void)
@@ -18,24 +15,17 @@ produce_element (void)
   // produce an element
   struct element e = { n };
   n++;
-  
-#ifdef _WIN32
-  Sleep((USLEEP_START + rand() % USLEEP_RANGE) / 1000);
-#else
-  usleep(USLEEP_START + rand() % USLEEP_RANGE);
-#endif
+
+  // pretend to take an amount of time
+  wait_random_time();
 
   // add it to the queue
   enqueue(e);
 }
 
-#ifdef _WIN32
-DWORD WINAPI
-produce (LPVOID arg)
-#else
-void*
+
+thread_helper_return_t
 produce (void *arg)
-#endif
 {
   while (1)
     produce_element();

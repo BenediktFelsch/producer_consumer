@@ -6,8 +6,9 @@ CFLAGS = -Wall -Wextra -g -pthread
 SRC = main.c \
       queue.c \
       producer.c \
-      consumer.c
-
+      consumer.c \
+      thread_helper.c \
+      util.c
 all: $(BIN)
 
 clean:

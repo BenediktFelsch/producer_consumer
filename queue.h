@@ -14,6 +14,4 @@ void enqueue(struct element);
 
 struct element dequeue(void);
 
-void monitor(void);
-
 #endif

@@ -1,11 +1,8 @@
 #ifndef PRODUCER_H
 #define PRODUCER_H
 
-#ifdef _WIN32
-#  include <windows.h>
-DWORD WINAPI produce(LPVOID arg);
-#else
-void* produce(void *arg);
-#endif
+#include "thread_helper.h"
+
+thread_helper_return_t produce(void *arg);
 
 #endif

@@ -6,22 +6,20 @@
 #include "util.h"
 
 #include <stdlib.h>
+#include <pthread.h>
 
-static void
-produce_element (void)
+static pthread_mutex_t produce_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static void produce_element(void)
 {
-  static size_t n = 0;
+    static size_t n = 0;
 
-  // produce an element
-  // TODO: protect this from concurrent access
-  struct element e = { n };
-  n++;
+    pthread_mutex_lock(&produce_mutex);
+    struct element e = { n++ };
+    pthread_mutex_unlock(&produce_mutex);
 
-  // pretend to take an amount of time
-  wait_random_time();
-
-  // add it to the queue
-  enqueue(e);
+    wait_random_time();
+    enqueue(e);
 }
 
 

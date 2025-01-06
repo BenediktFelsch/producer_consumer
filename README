@@ -7,17 +7,6 @@
 
             Programmrahmen "Producer / Consumer"
 
-Aufgabenstellung:
------------------
-
- Der gegebene Programmrahmen enthält eine Produzenten / Konsumenten Logik in
- zwei Threads (die bereits für Sie erstellt werden), mit einer geteilten Queue
- zur Kommunikation der produzierten bzw.
- konsumierten Elemente.
-
- Identifizieren Sie den/die Kritische(n) Abschnitt(e) im Programm, und schützen Sie den
- Programmablauf vor Verfälschung der geteilten Daten durch die Verwendung von
- Semaphoren.
 
 Kompilieren des Programms:
 --------------------------

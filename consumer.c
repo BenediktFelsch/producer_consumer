@@ -7,26 +7,25 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <pthread.h>
 
-static void
-consume_element (void)
+static pthread_mutex_t consume_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static void consume_element(void)
 {
-  static size_t n = 0;
+    static size_t n = 0;
+    struct element e = dequeue();
 
-  // retrieve an element from the queue
-  struct element e = dequeue();
-
-  // make sure we are consistent
-  // TODO: protect this from concurrent access
-  if (e.id != n)
+    pthread_mutex_lock(&consume_mutex);
+    if (e.id != n)
     {
-      fprintf(stderr, "CORRUPTION DETECTED! expected id %zu, got id %zu\n", n, e.id);
-      abort();
+        fprintf(stderr, "CORRUPTION DETECTED! expected id %zu, got id %zu\n", n, e.id);
+        abort();
     }
-  n++;
+    n++;
+    pthread_mutex_unlock(&consume_mutex);
 
-  // pretend to operate on the element
-  wait_random_time();
+    wait_random_time();
 }
 
 thread_helper_return_t
